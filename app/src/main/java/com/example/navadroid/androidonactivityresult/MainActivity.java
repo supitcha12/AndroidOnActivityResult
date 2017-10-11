@@ -10,6 +10,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_CODE = 555;
+    private final int RESULT_OK = 0;
+    //public static final
 
     private Button button;
 
@@ -23,10 +25,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), AnotherActivity.class);
-                i.putExtra("Value1", "This value one for AnotherActivity");
-                i.putExtra("Value2", "This value two for AnotherActivity");
-                // set the request code to any code you like,
-                // you can identify the callback via this code
+                // putExtra to AnotherActivity
+                //i.putExtra("Value1", "This value one for AnotherActivity");
+                //i.putExtra("Value2", "This value two for AnotherActivity");
+
+                // set the request code to any code you like, you can identify the callback via this code
                 startActivityForResult(i, REQUEST_CODE);
             }
         });
@@ -38,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
             if (data.hasExtra("returnKey1")) {
                 Toast.makeText(this, data.getExtras().getString("returnKey1"),
                         Toast.LENGTH_SHORT).show();
+            } else if (data.hasExtra("returnKey2")) {
+                Toast.makeText(this, data.getExtras().getString("returnKey2"),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "If you are looking for apple-pen, there is nothing. Ask Pikotaro!", Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 }
